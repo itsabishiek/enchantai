@@ -1,10 +1,11 @@
 import { PersonOutlined } from "@mui/icons-material";
+import { Backdrop } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import InputField from "../inputField/InputField";
 import "./ChatContainer.css";
 
-const ChatContainer = ({ model }) => {
+const ChatContainer = ({ model, showNav, setShowNav }) => {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
 
@@ -84,7 +85,14 @@ const ChatContainer = ({ model }) => {
   // };
 
   return (
-    <div className="chat-container">
+    <div className={`chat-container`}>
+      {showNav && (
+        <Backdrop
+          open
+          sx={{ zIndex: 1000 }}
+          onClick={() => setShowNav(false)}
+        />
+      )}
       <div className="layout">
         {chatLog.map((log, i) => (
           <div

@@ -57,3 +57,9 @@
     margin: 0px 70px;
   }
 }
+
+@media (max-width: 768px) {
+  .chat-log {
+    margin: 0 20px;
+  }
+}

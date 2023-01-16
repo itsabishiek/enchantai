@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatContainer from "../chatContainer/ChatContainer";
+import ChatHeader from "../chatHeader/ChatHeader";
 import Sidebar from "../sidebar/Sidebar";
 import "./Home.css";
 
 const Home = () => {
   const [models, setModels] = useState([]);
   const [model, setModel] = useState("text-davinci-003");
+  const [showNav, setShowNav] = useState(false);
 
   const getModels = async () => {
     const { data } = await axios.get("https://enchantai.onrender.com/models");
@@ -21,9 +23,22 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-container">
-      <Sidebar models={models} model={model} setModel={setModel} />
-      <ChatContainer model={model} />
+    <div style={{ position: "relative" }}>
+      <ChatHeader setShowNav={setShowNav} />
+      <div className="home-container">
+        <Sidebar
+          models={models}
+          model={model}
+          setModel={setModel}
+          showNav={showNav}
+          setShowNav={setShowNav}
+        />
+        <ChatContainer
+          model={model}
+          showNav={showNav}
+          setShowNav={setShowNav}
+        />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Add, DeleteOutline } from "@mui/icons-material";
+import { Add, Close, DeleteOutline } from "@mui/icons-material";
 import {
   Divider,
   FormControl,
@@ -9,9 +9,14 @@ import {
 import React from "react";
 import "./Sidebar.css";
 
-const Sidebar = ({ models, model, setModel }) => {
+const Sidebar = ({ models, model, setModel, showNav, setShowNav }) => {
   return (
-    <aside className="sidebar-container">
+    <aside className={`sidebar-container ${showNav && "show-sidebar"}`}>
+      {showNav && (
+        <div className="close-nav" onClick={() => setShowNav(false)}>
+          <Close />
+        </div>
+      )}
       <div className="new-chat">
         <Add />
         <span>New Chat</span>

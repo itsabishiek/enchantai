@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
-  background: #40414f;
+  background-color: #40414f;
   border: 1px solid #252525;
   border-radius: 5px;
   width: 730px;
@@ -28,7 +28,7 @@
 .chat-input-inner textarea {
   outline: none;
   border: none;
-  background: transparent;
+  background-color: transparent;
   width: 100%;
   height: 50px;
   border-radius: 5px;
@@ -40,9 +40,18 @@
   letter-spacing: 0.5;
 }
 
+@media (max-width: 980px) {
+  .chat-input-inner {
+    width: 95%;
+  }
+}
+
 @media (max-width: 768px) {
   .chat-input-container {
+    position: sticky;
     border-top-width: 0px;
     border-color: transparent;
+    background-image: none;
+    height: 80px;
   }
 }

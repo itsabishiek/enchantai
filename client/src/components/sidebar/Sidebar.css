@@ -59,3 +59,40 @@
   background: rgba(238, 238, 238, 0.08);
   border-radius: 6px;
 }
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    display: none;
+  }
+
+  .sidebar-container.show-sidebar {
+    display: flex;
+    z-index: 1002;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+  }
+
+  .close-nav {
+    position: absolute;
+    left: 320px;
+    top: 20px;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 360px) {
+  .sidebar-container.show-sidebar {
+    width: 250px;
+  }
+
+  .close-nav {
+    left: 265px;
+  }
+}
