@@ -1,0 +1,19 @@
+:root {
+  --sidebar-bg: #202123;
+  --chat-bg-primary: #343541;
+  --chat-bg-secondary: #444654;
+  --text-primary-clr: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #565869;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--chat-bg-primary);
+}
