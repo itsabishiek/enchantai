@@ -9,7 +9,7 @@ const Home = () => {
   const [model, setModel] = useState("text-davinci-003");
 
   const getModels = async () => {
-    const { data } = await axios.get("http://localhost:5000/models");
+    const { data } = await axios.get("https://enchantai.onrender.com/models");
     // console.log(data);
     setModels(data.models.data);
   };
