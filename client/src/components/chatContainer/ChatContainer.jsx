@@ -130,7 +130,7 @@ const ChatContainer = ({ model, showNav, setShowNav }) => {
           </div>
         ))}
 
-        <div style={{ width: "100%", height: "12rem" }}></div>
+        <div className="input-space"></div>
       </div>
 
       <div className="chat-input-holder">

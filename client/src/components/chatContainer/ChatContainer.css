@@ -52,6 +52,11 @@
   white-space: pre-wrap;
 }
 
+.input-space {
+  height: 12rem;
+  width: 100%;
+}
+
 @media (max-width: 1024px) {
   .chat-log {
     margin: 0px 70px;
@@ -61,5 +66,9 @@
 @media (max-width: 768px) {
   .chat-log {
     margin: 0 20px;
+  }
+
+  .input-space {
+    height: 3rem;
   }
 }
