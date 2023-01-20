@@ -2,17 +2,18 @@ import { PersonOutlined } from "@mui/icons-material";
 import { Backdrop } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import InputField from "../inputField/InputField";
 import "./ChatContainer.css";
 
-const ChatContainer = ({ model, showNav, setShowNav }) => {
+const ChatContainer = ({ model, temp, showNav, setShowNav, clearChat }) => {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
       "https://enchantai.onrender.com/",
-      { input, model },
+      { input, model, temp },
       {
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +29,6 @@ const ChatContainer = ({ model, showNav, setShowNav }) => {
       if (index < text.length) {
         setChatLog((prevState) => {
           let lastItem = prevState.pop();
-          console.log(text.length);
           if (lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
@@ -84,6 +84,12 @@ const ChatContainer = ({ model, showNav, setShowNav }) => {
   //   }
   // };
 
+  useEffect(() => {
+    if (clearChat) {
+      setChatLog([]);
+    }
+  }, [clearChat]);
+
   return (
     <div className={`chat-container`}>
       {showNav && (
@@ -130,7 +136,7 @@ const ChatContainer = ({ model, showNav, setShowNav }) => {
                 <div style={{ justifyContent: "flex-start" }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="fit-content"
+                    width="100%"
                     height="40px"
                     viewBox="0 0 100 100"
                     preserveAspectRatio="xMidYMid"
@@ -138,10 +144,10 @@ const ChatContainer = ({ model, showNav, setShowNav }) => {
                     <path
                       fill="none"
                       stroke="#4169e1"
-                      stroke-width="8"
-                      stroke-dasharray="42.76482137044271 42.76482137044271"
+                      strokeWidth="8"
+                      strokeDasharray="42.76482137044271 42.76482137044271"
                       d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40 C88.6 30 95 43.3 95 50s-6.4 20-19.3 20C56.4 70 43.6 30 24.3 30z"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     >
                       <animate
                         attributeName="stroke-dashoffset"

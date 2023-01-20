@@ -8,7 +8,9 @@ import "./Home.css";
 const Home = () => {
   const [models, setModels] = useState([]);
   const [model, setModel] = useState("text-davinci-003");
+  const [temp, setTemp] = useState(0);
   const [showNav, setShowNav] = useState(false);
+  const [clearChat, setClearChat] = useState(false);
 
   const getModels = async () => {
     const { data } = await axios.get("https://enchantai.onrender.com/models");
@@ -16,7 +18,13 @@ const Home = () => {
     setModels(data.models.data);
   };
 
-  // console.log(model);
+  const onClearChat = () => {
+    setTimeout(function () {
+      setClearChat(true);
+    }, 1000);
+
+    setClearChat(false);
+  };
 
   useEffect(() => {
     getModels();
@@ -30,13 +38,18 @@ const Home = () => {
           models={models}
           model={model}
           setModel={setModel}
+          temp={temp}
+          setTemp={setTemp}
           showNav={showNav}
           setShowNav={setShowNav}
+          onClearChat={onClearChat}
         />
         <ChatContainer
           model={model}
+          temp={temp}
           showNav={showNav}
           setShowNav={setShowNav}
+          clearChat={clearChat}
         />
       </div>
     </div>

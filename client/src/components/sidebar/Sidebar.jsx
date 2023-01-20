@@ -1,15 +1,18 @@
 import { Add, Close, DeleteOutline } from "@mui/icons-material";
-import {
-  Divider,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Divider, FormControl, MenuItem, Select } from "@mui/material";
 import React from "react";
 import "./Sidebar.css";
 
-const Sidebar = ({ models, model, setModel, showNav, setShowNav }) => {
+const Sidebar = ({
+  models,
+  model,
+  setModel,
+  temp,
+  setTemp,
+  showNav,
+  setShowNav,
+  onClearChat,
+}) => {
   return (
     <aside className={`sidebar-container ${showNav && "show-sidebar"}`}>
       {showNav && (
@@ -22,31 +25,59 @@ const Sidebar = ({ models, model, setModel, showNav, setShowNav }) => {
         <span>New Chat</span>
       </div>
 
-      <div className="select-models">
-        <h3>Model</h3>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Select Models</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            defaultValue="text-davinci-003"
-            value={model}
-            label="Select Models"
-            onChange={(e) => setModel(e.target.value)}
-          >
-            {models.map((model) => (
-              <MenuItem key={model.id} value={model.id}>
-                {model.id}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <div className="select-options">
+        <div>
+          <h3>Model</h3>
+          <FormControl fullWidth>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue="text-davinci-003"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+            >
+              {models.map((model) => (
+                <MenuItem key={model.id} value={model.id}>
+                  {model.id}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <div className="options-helper">
+            <div className="option-helper">Smart - Davinci</div>
+            <div className="option-helper">Code - Crushman</div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Temperature</h3>
+          <FormControl fullWidth>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue={0}
+              value={temp}
+              onChange={(e) => setTemp(e.target.value)}
+            >
+              <MenuItem value={0}>0 - Logical</MenuItem>
+              <MenuItem value={0.5}>0.5 - Balanced</MenuItem>
+              <MenuItem value={1}>1 - Creative</MenuItem>
+            </Select>
+          </FormControl>
+
+          <div className="options-helper">
+            <div className="option-helper">0 - Logical</div>
+            <div className="option-helper">0.5 - Balanced</div>
+            <div className="option-helper">1 - Creative</div>
+          </div>
+        </div>
       </div>
 
       <div className="sidebar-options">
         <Divider />
         <div className="item-wrapper">
-          <div className="item-container">
+          <div className="item-container" onClick={onClearChat}>
             <DeleteOutline fontSize="small" />
             <span>Clear conversations</span>
           </div>
