@@ -1,6 +1,9 @@
 import { createTheme, ThemeProvider } from "@mui/material";
+import Home from "./pages/home/Home";
+import Chatbot from "./pages/chatbot/Chatbot";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import Home from "./components/home/Home";
 
 const App = () => {
   const darkTheme = createTheme({
@@ -10,11 +13,14 @@ const App = () => {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div className="app">
-        <Home />
-      </div>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={darkTheme}>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route path="/chatbot" element={<Chatbot />} />
+        </Routes>
+      </ThemeProvider>
+    </Router>
   );
 };
 

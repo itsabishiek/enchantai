@@ -12,7 +12,7 @@ const ChatContainer = ({ model, temp, showNav, setShowNav, clearChat }) => {
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
-      "https://enchantai.onrender.com/",
+      "https://enchantai.onrender.com/api/chatbot/",
       { input, model, temp },
       {
         headers: {

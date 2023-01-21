@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import ChatContainer from "../chatContainer/ChatContainer";
-import ChatHeader from "../chatHeader/ChatHeader";
-import Sidebar from "../sidebar/Sidebar";
-import "./Home.css";
+import Sidebar from "../../components/sidebar/Sidebar";
+import ChatContainer from "../../components/chatContainer/ChatContainer";
+import ChatHeader from "../../components/chatHeader/ChatHeader";
+import "./Chatbot.css";
 
 const Home = () => {
   const [models, setModels] = useState([]);
@@ -13,7 +13,9 @@ const Home = () => {
   const [clearChat, setClearChat] = useState(false);
 
   const getModels = async () => {
-    const { data } = await axios.get("https://enchantai.onrender.com/models");
+    const { data } = await axios.get(
+      "https://enchantai.onrender.com/api/chatbot/models/"
+    );
     // console.log(data);
     setModels(data.models.data);
   };
@@ -33,7 +35,7 @@ const Home = () => {
   return (
     <div style={{ position: "relative" }}>
       <ChatHeader setShowNav={setShowNav} />
-      <div className="home-container">
+      <div className="chatbot-container">
         <Sidebar
           models={models}
           model={model}

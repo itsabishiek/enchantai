@@ -4,14 +4,18 @@
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  /* color-scheme: light dark; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* -webkit-text-size-adjust: 100%; */
+
+  --sidebar-bg: #202123;
+  --chat-bg-primary: #343541;
+  --chat-bg-secondary: #444654;
+  --text-primary-clr: #fff;
 }
 
 * {
@@ -27,10 +31,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--chat-bg-primary);
   color: var(--text-primary-clr);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #565869;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--chat-bg-primary);
 }

@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", async (req, res) => {
+app.post("/api/chatbot", async (req, res) => {
   const { input, model, temp } = req.body;
   try {
     const response = await openai.createCompletion({
@@ -48,7 +48,7 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.get("/models", async (req, res) => {
+app.get("/api/chatbot/models", async (req, res) => {
   try {
     const response = await openai.listEngines();
     res.status(200).send({
