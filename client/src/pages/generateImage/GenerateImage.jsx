@@ -31,7 +31,7 @@ const GenerateImage = () => {
     setLoading(true);
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/generateImage/",
+      "https://enchantai.onrender.com/api/generateImage/",
       {
         prompt,
         size,
