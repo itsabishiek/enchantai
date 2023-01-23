@@ -4,6 +4,7 @@ import Chatbot from "./pages/chatbot/Chatbot";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import GenerateImage from "./pages/generateImage/GenerateImage";
 
 const App = () => {
   const darkTheme = createTheme({
@@ -18,6 +19,7 @@ const App = () => {
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/generateImage" element={<GenerateImage />} />
         </Routes>
       </ThemeProvider>
     </Router>

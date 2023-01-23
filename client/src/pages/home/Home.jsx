@@ -23,7 +23,7 @@ const Home = () => {
             </div>
           </Link>
 
-          <Link to="/dalle" className="home-gradient-card">
+          <Link to="/generateImage" className="home-gradient-card">
             <img src={gradientCard2} alt="" />
 
             <div className="home-gradient-text">
