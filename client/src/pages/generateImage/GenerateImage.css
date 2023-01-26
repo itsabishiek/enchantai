@@ -90,6 +90,7 @@
   max-height: 450px;
   object-fit: contain;
   border-radius: 10px;
+  background-color: var(--chat-bg-secondary);
 }
 
 .generated-image-download {

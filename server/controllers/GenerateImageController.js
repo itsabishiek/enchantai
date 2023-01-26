@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 
@@ -41,4 +42,33 @@ const generateImage = async (req, res) => {
   }
 };
 
-export { generateImage };
+const generateImageVariations = async (req, res) => {
+  try {
+    const response = await openai.createImageVariation(
+      fs.createReadStream("../../client/public/logo192.png"),
+      1,
+      "1024x1024"
+    );
+
+    const imageURL = response.data.data[0].url;
+
+    console.log(imageURL);
+
+    res.status(200).send({
+      data: imageURL,
+    });
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+    } else {
+      console.log(error.message);
+    }
+
+    res.status(500).send({
+      error: error.message,
+    });
+  }
+};
+
+export { generateImage, generateImageVariations };

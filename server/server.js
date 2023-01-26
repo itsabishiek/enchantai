@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/chatbot", ChatbotRoutes);
-app.use("/api/generateImage", GenerateImageRoutes);
+app.use("/api", GenerateImageRoutes);
 
 app.listen(PORT, () => {
   console.log(`AI server started on http://localhost:${PORT}`);

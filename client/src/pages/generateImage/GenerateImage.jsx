@@ -7,6 +7,7 @@ import {
   FormControl,
   MenuItem,
   Select,
+  Skeleton,
 } from "@mui/material";
 import { Download } from "@mui/icons-material";
 import "./GenerateImage.css";
@@ -16,6 +17,7 @@ const GenerateImage = () => {
   const [size, setSize] = useState("medium");
   const [imageURL, setImageURL] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(true);
 
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(prompt);
@@ -80,7 +82,7 @@ const GenerateImage = () => {
         </form>
 
         <div className="generated-image">
-          {imageURL && (
+          {imageURL && !loadingImage && (
             <div
               className="generated-image-download"
               onClick={() => downloadImage(imageURL)}
@@ -88,7 +90,20 @@ const GenerateImage = () => {
               <Download />
             </div>
           )}
-          <img src={imageURL} alt="" />
+          {loadingImage && (
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height="450px"
+              sx={{ bgcolor: "#444654", borderRadius: "10px" }}
+            />
+          )}
+          <img
+            src={imageURL}
+            alt=""
+            style={loadingImage ? { display: "none" } : { display: "unset" }}
+            onLoad={() => setLoadingImage(false)}
+          />
         </div>
       </div>
 
