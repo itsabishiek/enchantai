@@ -93,18 +93,35 @@
   background-color: var(--chat-bg-secondary);
 }
 
-.generated-image-download {
+.generated-image-options {
   position: absolute;
   right: 10px;
   top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.generated-image-download {
   width: 40px;
   height: 40px;
-  background-color: var(--chat-bg-secondary);
+  cursor: pointer;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  background-color: var(--chat-bg-secondary);
+}
+
+.generated-image-variations {
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--chat-bg-secondary);
 }
 
 @media (max-width: 768px) {

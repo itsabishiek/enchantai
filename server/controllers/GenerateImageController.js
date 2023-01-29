@@ -21,9 +21,10 @@ const generateImage = async (req, res) => {
       prompt,
       n: 1,
       size: imageSize,
+      response_format: "b64_json",
     });
 
-    const imageURL = response.data.data[0].url;
+    const imageURL = response.data.data[0].b64_json;
 
     res.status(200).send({
       data: imageURL,
@@ -43,19 +44,17 @@ const generateImage = async (req, res) => {
 };
 
 const generateImageVariations = async (req, res) => {
+  const { imageURL } = req.body;
+
   try {
-    const response = await openai.createImageVariation(
-      fs.createReadStream("../../client/public/logo192.png"),
-      1,
-      "1024x1024"
-    );
+    const response = await openai.createImageVariation(imageURL);
 
-    const imageURL = response.data.data[0].url;
+    const imgURL = response.data.data[0].url;
 
-    console.log(imageURL);
+    console.log(imgURL);
 
     res.status(200).send({
-      data: imageURL,
+      data: imgURL,
     });
   } catch (error) {
     if (error.response) {

@@ -41,6 +41,7 @@
   width: 360px;
   height: 200px;
   border-radius: 5px;
+  background-color: var(--chat-bg-secondary);
 }
 
 .home-gradient-text {

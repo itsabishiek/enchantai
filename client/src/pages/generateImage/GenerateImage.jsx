@@ -9,7 +9,7 @@ import {
   Select,
   Skeleton,
 } from "@mui/material";
-import { Download } from "@mui/icons-material";
+import { Download, PrecisionManufacturing } from "@mui/icons-material";
 import "./GenerateImage.css";
 
 const GenerateImage = () => {
@@ -45,9 +45,33 @@ const GenerateImage = () => {
       }
     );
 
-    setImageURL(data.data);
+    setImageURL(`data:image/jpeg;base64,${data.data}`);
     setLoading(false);
   };
+
+  const generateImageVariations = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.post(
+        "https://enchantai.onrender.com/api/generateImageVariations/",
+        {
+          imageURL,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.log("generateImageVariations Error", error);
+    }
+  };
+
+  console.log(imageURL);
 
   return (
     <div className="generateImage-container">
@@ -83,11 +107,19 @@ const GenerateImage = () => {
 
         <div className="generated-image">
           {imageURL && !loadingImage && (
-            <div
-              className="generated-image-download"
-              onClick={() => downloadImage(imageURL)}
-            >
-              <Download />
+            <div className="generated-image-options">
+              <div
+                className="generated-image-download"
+                onClick={() => downloadImage(imageURL)}
+              >
+                <Download />
+              </div>
+              <div
+                className="generated-image-variations"
+                onClick={generateImageVariations}
+              >
+                <PrecisionManufacturing />
+              </div>
             </div>
           )}
           {loadingImage && (
