@@ -1,5 +1,12 @@
 import { Add, Close, DeleteOutline } from "@mui/icons-material";
-import { Divider, FormControl, MenuItem, Select } from "@mui/material";
+import {
+  Box,
+  Divider,
+  FormControl,
+  MenuItem,
+  Select,
+  Slider,
+} from "@mui/material";
 import React from "react";
 import "./Sidebar.css";
 
@@ -9,10 +16,17 @@ const Sidebar = ({
   setModel,
   temp,
   setTemp,
+  frequencyPenalty,
+  setFrequencyPenalty,
+  presencePenalty,
+  setPresencePenalty,
   showNav,
   setShowNav,
   onClearChat,
 }) => {
+  console.log(frequencyPenalty);
+  console.log(presencePenalty);
+
   return (
     <aside className={`sidebar-container ${showNav && "show-sidebar"}`}>
       {showNav && (
@@ -66,11 +80,37 @@ const Sidebar = ({
             </Select>
           </FormControl>
 
-          <div className="options-helper">
-            <div className="option-helper">0 - Logical</div>
-            <div className="option-helper">0.5 - Balanced</div>
-            <div className="option-helper">1 - Creative</div>
-          </div>
+          <Box sx={{ marginTop: "20px" }}>
+            <h3>Frequency Penalty</h3>
+            <Box sx={{ padding: "0px 10px 10px 10px" }}>
+              <Slider
+                min={0}
+                max={2}
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                defaultValue={0.5}
+                value={frequencyPenalty}
+                onChange={(e) => setFrequencyPenalty(e.target.value)}
+              />
+            </Box>
+          </Box>
+
+          <Box>
+            <h3>Presence Penalty</h3>
+            <Box sx={{ padding: "0px 10px" }}>
+              <Slider
+                min={0}
+                max={2}
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                defaultValue={0}
+                value={presencePenalty}
+                onChange={(e) => setPresencePenalty(e.target.value)}
+              />
+            </Box>
+          </Box>
         </div>
       </div>
 

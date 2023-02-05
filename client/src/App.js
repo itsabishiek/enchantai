@@ -10,6 +10,9 @@ const App = () => {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
+      primary: {
+        main: "#444654",
+      },
     },
   });
 

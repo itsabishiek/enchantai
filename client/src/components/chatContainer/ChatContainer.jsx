@@ -6,14 +6,22 @@ import { useEffect } from "react";
 import InputField from "../inputField/InputField";
 import "./ChatContainer.css";
 
-const ChatContainer = ({ model, temp, showNav, setShowNav, clearChat }) => {
+const ChatContainer = ({
+  model,
+  temp,
+  frequencyPenalty,
+  presencePenalty,
+  showNav,
+  setShowNav,
+  clearChat,
+}) => {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
       "https://enchantai.onrender.com/api/chatbot/",
-      { input, model, temp },
+      { input, model, temp, frequencyPenalty, presencePenalty },
       {
         headers: {
           "Content-Type": "application/json",

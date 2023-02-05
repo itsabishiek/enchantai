@@ -9,6 +9,8 @@ const Home = () => {
   const [models, setModels] = useState([]);
   const [model, setModel] = useState("text-davinci-003");
   const [temp, setTemp] = useState(0);
+  const [frequencyPenalty, setFrequencyPenalty] = useState(0.5);
+  const [presencePenalty, setPresencePenalty] = useState(0);
   const [showNav, setShowNav] = useState(false);
   const [clearChat, setClearChat] = useState(false);
 
@@ -42,6 +44,10 @@ const Home = () => {
           setModel={setModel}
           temp={temp}
           setTemp={setTemp}
+          frequencyPenalty={frequencyPenalty}
+          setFrequencyPenalty={setFrequencyPenalty}
+          presencePenalty={presencePenalty}
+          setPresencePenalty={setPresencePenalty}
           showNav={showNav}
           setShowNav={setShowNav}
           onClearChat={onClearChat}
@@ -49,6 +55,8 @@ const Home = () => {
         <ChatContainer
           model={model}
           temp={temp}
+          frequencyPenalty={frequencyPenalty}
+          presencePenalty={presencePenalty}
           showNav={showNav}
           setShowNav={setShowNav}
           clearChat={clearChat}
