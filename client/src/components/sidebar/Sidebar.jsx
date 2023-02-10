@@ -24,9 +24,6 @@ const Sidebar = ({
   setShowNav,
   onClearChat,
 }) => {
-  console.log(frequencyPenalty);
-  console.log(presencePenalty);
-
   return (
     <aside className={`sidebar-container ${showNav && "show-sidebar"}`}>
       {showNav && (
@@ -64,52 +61,54 @@ const Sidebar = ({
           </div>
         </div>
 
-        <div>
-          <h3>Temperature</h3>
-          <FormControl fullWidth>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              defaultValue={0}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "0px 5px",
+            width: "100%",
+            gap: "15px",
+          }}
+        >
+          <Box sx={{ width: "100%" }}>
+            <h3>Temperature</h3>
+            <Slider
+              min={0}
+              max={1}
+              valueLabelDisplay="auto"
+              step={0.1}
+              marks
+              defaultValue={0.3}
               value={temp}
               onChange={(e) => setTemp(e.target.value)}
-            >
-              <MenuItem value={0}>0 - Logical</MenuItem>
-              <MenuItem value={0.5}>0.5 - Balanced</MenuItem>
-              <MenuItem value={1}>1 - Creative</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Box sx={{ marginTop: "20px" }}>
-            <h3>Frequency Penalty</h3>
-            <Box sx={{ padding: "0px 10px 10px 10px" }}>
-              <Slider
-                min={0}
-                max={2}
-                valueLabelDisplay="auto"
-                step={0.1}
-                marks
-                defaultValue={0.5}
-                value={frequencyPenalty}
-                onChange={(e) => setFrequencyPenalty(e.target.value)}
-              />
-            </Box>
+            />
           </Box>
-
-          <Box>
+          <Box sx={{ width: "100%" }}>
+            <h3>Frequency Penalty</h3>
+            <Slider
+              min={0}
+              max={2}
+              valueLabelDisplay="auto"
+              step={0.1}
+              marks
+              defaultValue={0.5}
+              value={frequencyPenalty}
+              onChange={(e) => setFrequencyPenalty(e.target.value)}
+            />
+          </Box>
+          <Box sx={{ width: "100%" }}>
             <h3>Presence Penalty</h3>
-            <Box sx={{ padding: "0px 10px" }}>
-              <Slider
-                min={0}
-                max={2}
-                valueLabelDisplay="auto"
-                step={0.1}
-                marks
-                defaultValue={0}
-                value={presencePenalty}
-                onChange={(e) => setPresencePenalty(e.target.value)}
-              />
-            </Box>
+            <Slider
+              min={0}
+              max={2}
+              valueLabelDisplay="auto"
+              step={0.1}
+              marks
+              defaultValue={0}
+              value={presencePenalty}
+              onChange={(e) => setPresencePenalty(e.target.value)}
+            />
           </Box>
         </div>
       </div>

@@ -1,8 +1,8 @@
-import { PersonOutlined } from "@mui/icons-material";
+import { Check, ContentCopy, PersonOutlined } from "@mui/icons-material";
 import { Backdrop } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import InputField from "../inputField/InputField";
 import "./ChatContainer.css";
 
@@ -17,6 +17,7 @@ const ChatContainer = ({
 }) => {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
+  const [copied, setCopied] = useState(false);
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
@@ -123,8 +124,8 @@ const ChatContainer = ({
               >
                 {log.type === "bot" || log.type === "loading" ? (
                   <svg
-                    width="25"
-                    height="25"
+                    width="100%"
+                    height="25px"
                     viewBox="0 0 41 41"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +169,27 @@ const ChatContainer = ({
                   </svg>
                 </div>
               ) : (
-                <div className="chat-message">{log.post}</div>
+                <>
+                  <CopyToClipboard
+                    text={log.post}
+                    onCopy={() => {
+                      setCopied(true);
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 3000);
+                    }}
+                  >
+                    <div className="copy-response">
+                      {copied ? (
+                        <Check sx={{ color: "#10a37f" }} fontSize="small" />
+                      ) : (
+                        <ContentCopy fontSize="small" />
+                      )}
+                    </div>
+                  </CopyToClipboard>
+
+                  <div className="chat-message">{log.post}</div>
+                </>
               )}
             </div>
           </div>

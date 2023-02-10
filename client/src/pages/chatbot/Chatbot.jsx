@@ -8,7 +8,7 @@ import "./Chatbot.css";
 const Home = () => {
   const [models, setModels] = useState([]);
   const [model, setModel] = useState("text-davinci-003");
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState(0.3);
   const [frequencyPenalty, setFrequencyPenalty] = useState(0.5);
   const [presencePenalty, setPresencePenalty] = useState(0);
   const [showNav, setShowNav] = useState(false);

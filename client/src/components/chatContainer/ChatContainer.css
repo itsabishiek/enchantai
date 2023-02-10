@@ -17,6 +17,7 @@
 
 .chat-log-container {
   width: 100%;
+  position: relative;
 }
 
 .chat-log {
@@ -46,6 +47,28 @@
   background-color: #10a37f;
 }
 
+.copy-response {
+  display: none;
+}
+
+.chat-log-container.chatgpt .copy-response {
+  display: unset;
+  position: absolute;
+  top: 15px;
+  right: 100px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-log-container.chatgpt .copy-response:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .chat-message {
   margin-top: 5px;
   width: 100%;
@@ -61,6 +84,10 @@
   .chat-log {
     margin: 0px 70px;
   }
+
+  .chat-log-container.chatgpt .copy-response {
+    right: 25px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -70,5 +97,11 @@
 
   .input-space {
     height: 3rem;
+  }
+
+  .chat-log-container.chatgpt .copy-response {
+    right: 8px;
+    top: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }

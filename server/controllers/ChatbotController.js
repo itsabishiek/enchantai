@@ -36,7 +36,7 @@ const chatResponse = async (req, res) => {
       presence_penalty: presencePenalty, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
     });
 
-    console.log(response.data.choices[0].text);
+    // console.log(response.data.choices[0].text);
     // console.log(temp);
 
     res.status(200).send({
