@@ -4,6 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import ChatContainer from "../../components/chatContainer/ChatContainer";
 import ChatHeader from "../../components/chatHeader/ChatHeader";
 import "./Chatbot.css";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const Home = () => {
   const [models, setModels] = useState([]);
@@ -13,13 +14,16 @@ const Home = () => {
   const [presencePenalty, setPresencePenalty] = useState(0);
   const [showNav, setShowNav] = useState(false);
   const [clearChat, setClearChat] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getModels = async () => {
+    setLoading(true);
     const { data } = await axios.get(
       "https://enchantai.onrender.com/api/chatbot/models/"
     );
     // console.log(data);
     setModels(data.models.data);
+    setLoading(false);
   };
 
   const onClearChat = () => {
@@ -62,6 +66,15 @@ const Home = () => {
           clearChat={clearChat}
         />
       </div>
+
+      {loading && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
     </div>
   );
 };
