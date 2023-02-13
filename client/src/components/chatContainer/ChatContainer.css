@@ -52,7 +52,6 @@
 }
 
 .chat-log-container.chatgpt .copy-response {
-  display: unset;
   position: absolute;
   top: 15px;
   right: 100px;
@@ -63,6 +62,12 @@
   justify-content: center;
   border-radius: 4px;
   cursor: pointer;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.chat-log-container.chatgpt:hover .copy-response {
+  opacity: 1;
 }
 
 .chat-log-container.chatgpt .copy-response:hover {
