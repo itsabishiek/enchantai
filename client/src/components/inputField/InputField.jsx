@@ -2,11 +2,12 @@ import { Send } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import "./InputField.css";
 
-const InputField = ({ handleSubmit, onKeyUp, setInput, input }) => {
+const InputField = ({ handleSubmit, onKeyUp, setInput, input, inputRef }) => {
   return (
     <div className="chat-input-container">
       <form className="chat-input-inner" onSubmit={handleSubmit}>
         <textarea
+          ref={inputRef}
           type="text"
           autoFocus
           onKeyUp={onKeyUp}

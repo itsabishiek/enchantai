@@ -1,8 +1,9 @@
 import { Check, ContentCopy, PersonOutlined } from "@mui/icons-material";
 import { Backdrop } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import TypeWriter from "typewriter-effect";
 import InputField from "../inputField/InputField";
 import "./ChatContainer.css";
 
@@ -18,6 +19,7 @@ const ChatContainer = ({
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
   const [copied, setCopied] = useState(false);
+  const inputRef = useRef();
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
@@ -32,35 +34,23 @@ const ChatContainer = ({
     return data;
   };
 
-  const autoTypingBotResponse = (text) => {
-    let index = 0;
-    let interval = setInterval(() => {
-      if (index < text.length) {
-        setChatLog((prevState) => {
-          let lastItem = prevState.pop();
-          if (lastItem.type !== "bot") {
-            prevState.push({
-              type: "bot",
-              post: text[index],
-            });
-          } else {
-            prevState.push({
-              type: "bot",
-              post: lastItem.post + text[index - 1],
-            });
-          }
-          return [...prevState];
-        });
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 20);
-  };
-
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
-      autoTypingBotResponse(post);
+      setChatLog((prevState) => {
+        let lastItem = prevState.pop();
+        if (lastItem.type !== "bot") {
+          prevState.push({
+            type: "bot",
+            post: post,
+          });
+        } else {
+          prevState.push({
+            type: "bot",
+            post: lastItem.post + post,
+          });
+        }
+        return [...prevState];
+      });
     } else {
       setChatLog((prevState) => {
         return [
@@ -195,7 +185,33 @@ const ChatContainer = ({
                       </div>
                     </CopyToClipboard>
 
-                    <div className="chat-message">{log.post}</div>
+                    <div className="chat-message">
+                      {log.type === "bot" ? (
+                        <TypeWriter
+                          onInit={(writer) => {
+                            writer
+                              .typeString(log.post)
+                              .callFunction(() => {
+                                document.querySelector(
+                                  ".Typewriter__cursor"
+                                ).style.display = "none";
+
+                                setTimeout(() => {
+                                  inputRef.current.focus();
+                                }, 200);
+                              })
+                              .changeDelay(50)
+                              .start();
+                          }}
+                          options={{
+                            delay: 16,
+                            cursorClassName: "typewriter-cursor",
+                          }}
+                        />
+                      ) : (
+                        log.post
+                      )}
+                    </div>
                   </>
                 )}
               </div>
@@ -211,6 +227,7 @@ const ChatContainer = ({
             // onKeyUp={onKeyUp}
             setInput={setInput}
             input={input}
+            inputRef={inputRef}
           />
         </div>
       </div>

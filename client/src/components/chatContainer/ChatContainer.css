@@ -85,6 +85,10 @@
   width: 100%;
 }
 
+.typewriter-cursor {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .chat-log {
     margin: 0px 70px;
