@@ -10,6 +10,7 @@ const InputField = ({ handleSubmit, onKeyUp, setInput, input, inputRef }) => {
           ref={inputRef}
           type="text"
           autoFocus
+          placeholder="Send a message"
           onKeyUp={onKeyUp}
           value={input}
           onChange={(e) => setInput(e.target.value)}
