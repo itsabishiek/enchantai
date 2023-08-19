@@ -98,120 +98,120 @@ const Sidebar = ({
         </div>
       </div>
 
+      {toggleOptions && (
+        <div className="select-options">
+          <div>
+            <div className="options-header">
+              <IconButton onClick={() => setToggleOptions(false)}>
+                <ArrowBackIos
+                  fontSize="small"
+                  sx={{
+                    transform: "translateX(3px)",
+                  }}
+                />
+              </IconButton>
+              <h3>Model</h3>
+            </div>
+            <FormControl fullWidth>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                defaultValue="text-davinci-003"
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+              >
+                {models.map((model) => (
+                  <MenuItem key={model.id} value={model.id}>
+                    {model.id}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <div className="options-helper">
+              <div className="option-helper">Smart - Davinci</div>
+              <div className="option-helper">Code - Crushman</div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "0px 5px",
+              width: "100%",
+              gap: "15px",
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
+              <h3>Temperature</h3>
+              <Slider
+                min={0}
+                max={1}
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                defaultValue={0.3}
+                value={temp}
+                onChange={(e) => setTemp(e.target.value)}
+              />
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
+              <h3>Frequency Penalty</h3>
+              <Slider
+                min={0}
+                max={2}
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                defaultValue={0.5}
+                value={frequencyPenalty}
+                onChange={(e) => setFrequencyPenalty(e.target.value)}
+              />
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
+              <h3>Presence Penalty</h3>
+              <Slider
+                min={0}
+                max={2}
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                defaultValue={0}
+                value={presencePenalty}
+                onChange={(e) => setPresencePenalty(e.target.value)}
+              />
+            </Box>
+          </div>
+        </div>
+      )}
+
       <div className="sidebar-options-wrapper">
         <div className="sidebar-options">
           <Divider />
           <div className="item-wrapper">
-            {toggleOptions && (
-              <div className="select-options">
-                <div>
-                  <div className="options-header">
-                    <IconButton onClick={() => setToggleOptions(false)}>
-                      <ArrowBackIos
-                        fontSize="small"
-                        sx={{
-                          transform: "translateX(3px)",
-                        }}
-                      />
-                    </IconButton>
-                    <h3>Model</h3>
-                  </div>
-                  <FormControl fullWidth>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      defaultValue="text-davinci-003"
-                      value={model}
-                      onChange={(e) => setModel(e.target.value)}
-                    >
-                      {models.map((model) => (
-                        <MenuItem key={model.id} value={model.id}>
-                          {model.id}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-
-                  <div className="options-helper">
-                    <div className="option-helper">Smart - Davinci</div>
-                    <div className="option-helper">Code - Crushman</div>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "0px 5px",
-                    width: "100%",
-                    gap: "15px",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "10px",
-                    }}
-                  >
-                    <h3>Temperature</h3>
-                    <Slider
-                      min={0}
-                      max={1}
-                      valueLabelDisplay="auto"
-                      step={0.1}
-                      marks
-                      defaultValue={0.3}
-                      value={temp}
-                      onChange={(e) => setTemp(e.target.value)}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "10px",
-                    }}
-                  >
-                    <h3>Frequency Penalty</h3>
-                    <Slider
-                      min={0}
-                      max={2}
-                      valueLabelDisplay="auto"
-                      step={0.1}
-                      marks
-                      defaultValue={0.5}
-                      value={frequencyPenalty}
-                      onChange={(e) => setFrequencyPenalty(e.target.value)}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "10px",
-                    }}
-                  >
-                    <h3>Presence Penalty</h3>
-                    <Slider
-                      min={0}
-                      max={2}
-                      valueLabelDisplay="auto"
-                      step={0.1}
-                      marks
-                      defaultValue={0}
-                      value={presencePenalty}
-                      onChange={(e) => setPresencePenalty(e.target.value)}
-                    />
-                  </Box>
-                </div>
-              </div>
-            )}
-
             <div
               className="item-container"
               onClick={() => setToggleOptions(!toggleOptions)}
