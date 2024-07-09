@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import TypeWriter from "typewriter-effect";
 import InputField from "../inputField/InputField";
+import Markdown from "react-markdown";
 import "./ChatContainer.css";
 
 const ChatContainer = ({
@@ -23,7 +24,7 @@ const ChatContainer = ({
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
-      "https://enchantai.onrender.com/api/chatbot/",
+      "http://localhost:5000/api/chatbot/",
       { input, model, temp, frequencyPenalty, presencePenalty },
       {
         headers: {
@@ -187,27 +188,28 @@ const ChatContainer = ({
 
                     <div className="chat-message">
                       {log.type === "bot" ? (
-                        <TypeWriter
-                          onInit={(writer) => {
-                            writer
-                              .typeString(log.post)
-                              .callFunction(() => {
-                                document.querySelector(
-                                  ".Typewriter__cursor"
-                                ).style.display = "none";
+                        // <TypeWriter
+                        //   onInit={(writer) => {
+                        //     writer
+                        //       .typeString(log.post)
+                        //       .callFunction(() => {
+                        //         document.querySelector(
+                        //           ".Typewriter__cursor"
+                        //         ).style.display = "none";
 
-                                setTimeout(() => {
-                                  inputRef.current.focus();
-                                }, 200);
-                              })
-                              .changeDelay(50)
-                              .start();
-                          }}
-                          options={{
-                            delay: 16,
-                            cursorClassName: "typewriter-cursor",
-                          }}
-                        />
+                        //         setTimeout(() => {
+                        //           inputRef.current.focus();
+                        //         }, 200);
+                        //       })
+                        //       .changeDelay(50)
+                        //       .start();
+                        //   }}
+                        //   options={{
+                        //     delay: 16,
+                        //     cursorClassName: "typewriter-cursor",
+                        //   }}
+                        // />
+                        <Markdown>{log.post}</Markdown>
                       ) : (
                         log.post
                       )}

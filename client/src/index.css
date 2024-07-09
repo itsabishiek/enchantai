@@ -35,6 +35,12 @@ body {
   color: var(--text-primary-clr);
 }
 
+pre {
+  background-color: #202123;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
