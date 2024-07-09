@@ -1,14 +1,13 @@
-import { Configuration, OpenAIApi } from "openai";
+// import { Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
-import fs from "fs";
 
 dotenv.config();
 
-const configuration = new Configuration({
-  organization: "org-qXGlqrkIEo0r7Nxm68oJ3pXo",
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   organization: "org-qXGlqrkIEo0r7Nxm68oJ3pXo",
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
 
 const generateImage = async (req, res) => {
   const { prompt, size } = req.body;

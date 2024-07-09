@@ -1,7 +1,6 @@
 import {
   Add,
   ArrowBackIos,
-  Chat,
   Close,
   DeleteOutline,
   SettingsSuggest,
@@ -44,58 +43,6 @@ const Sidebar = ({
       <div className="new-chat">
         <Add />
         <span>New Chat</span>
-      </div>
-
-      <div className="other-chats">
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
-
-        <div className="item-container">
-          <Chat fontSize="small" />
-          <span>1 Minute Fantasy</span>
-        </div>
       </div>
 
       {toggleOptions && (
