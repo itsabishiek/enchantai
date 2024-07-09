@@ -1,10 +1,9 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import Sidebar from "../../components/sidebar/Sidebar";
+import { Backdrop, CircularProgress } from "@mui/material";
+import React, { useState } from "react";
 import ChatContainer from "../../components/chatContainer/ChatContainer";
 import ChatHeader from "../../components/chatHeader/ChatHeader";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./Chatbot.css";
-import { Backdrop, CircularProgress } from "@mui/material";
 
 const Home = () => {
   const [models, setModels] = useState([]);
@@ -16,15 +15,15 @@ const Home = () => {
   const [clearChat, setClearChat] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const getModels = async () => {
-    setLoading(true);
-    const { data } = await axios.get(
-      "https://enchantai.onrender.com/api/chatbot/models/"
-    );
-    // console.log(data);
-    setModels(data.models.data);
-    setLoading(false);
-  };
+  // const getModels = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(
+  //     "https://enchantai.onrender.com/api/chatbot/models/"
+  //   );
+  //   // console.log(data);
+  //   setModels(data.models.data);
+  //   setLoading(false);
+  // };
 
   const onClearChat = () => {
     setTimeout(function () {
@@ -34,9 +33,9 @@ const Home = () => {
     setClearChat(false);
   };
 
-  useEffect(() => {
-    getModels();
-  }, []);
+  // useEffect(() => {
+  //   getModels();
+  // }, []);
 
   return (
     <div style={{ position: "relative" }}>
