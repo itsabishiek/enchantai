@@ -24,7 +24,7 @@ const ChatContainer = ({
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
-      "http://localhost:5000/api/chatbot/",
+      "https://enchantai.onrender.com/api/chatbot/",
       { input, model, temp, frequencyPenalty, presencePenalty },
       {
         headers: {
